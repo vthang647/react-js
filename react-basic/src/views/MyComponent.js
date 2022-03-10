@@ -1,53 +1,54 @@
 import React from "react";
 import ChildComponent from "./ChildComponent";
+import AddComponent from "../components/AddComponent";
 
 class MyComponent extends React.Component {
   state = {
-    firstName: "",
-    lastName: "",
+    nameJob: "developer",
+    salary: "3000000",
+    arrJobs: [
+      {
+        id: "abcjob1",
+        title: "developer",
+        salary: "3000000",
+      },
+      {
+        id: "abcjob2",
+        title: "teacher",
+        salary: "7000000",
+      },
+      {
+        id: "abcjob3",
+        title: "doctor",
+        salary: "2200000",
+      },
+    ],
   };
 
-  handleFirstName = (event) => {
+  addArrJobs = (job) => {
     this.setState({
-      firstName: event.target.value,
+      arrJobs: [...this.state.arrJobs, job],
     });
   };
 
-  handleLastName = (event) => {
+  deleteAJob = (job) => {
+    let currentJob = this.state.arrJobs;
+    currentJob = currentJob.filter((item) => item.id !== job.id);
     this.setState({
-      lastName: event.target.value,
+      arrJobs: currentJob,
     });
-  };
-
-  handleClicked = (event) => {
-    event.preventDefault();
-    alert("click me ", this.state);
   };
 
   render() {
-    console.log("click >>> ", this.state);
     return (
       <>
-        <form>
-          <input
-            type="text"
-            value={this.state.firstName}
-            onChange={(event) => this.handleFirstName(event)}
-          />
-          <input
-            type="text"
-            value={this.state.lastName}
-            onChange={(event) => this.handleLastName(event)}
-          />
-          <input
-            type="submit"
-            value="Submit"
-            onClick={(event) => this.handleClicked(event)}
-          />
-        </form>
-        <ChildComponent name="one" />
-        <ChildComponent name="two" />
-        <ChildComponent name="three" />
+        <AddComponent addArrJobs={this.addArrJobs} />
+        <ChildComponent
+          name={this.state.nameJob}
+          salary={this.state.salary}
+          arrJob={this.state.arrJobs}
+          deleteAJob={this.deleteAJob}
+        />
       </>
     );
   }

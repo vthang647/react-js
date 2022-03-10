@@ -10,3 +10,26 @@ giúp cho người dùng cập nhật lại dữ liệu của một component m�
 4. setState 
 -mỗi khi gọi thì sẽ chạy lại hàm render
 -preventDefault() tránh load lại trang khi nhấn nút submit trong form
+
+.props : dùng để chuyền dữ liệu từ thằng cha xuống thằng con
+. dùng vòng lặp thì nên dùng hàm map: array.map((item, index) =>{ return(<>dữ liệu lặp</>) })
+bởi vì nó lặp thông qua key riêng.
+.dấu ...đại diện cho lấy toàn bộ dữ liệu của một đối tượng hay một mảng
+.dấu && dùng để xét nhiều điều kiện cùng lúc ? something : something
+.Route cài thư viện react-route-dom. <Switch> <Route path="/component" exact> <myComponent /> </route>
+từ khóa exact để cho route xác định chính xác đường dẫn trong path thì nó mới chuyển trang, không chính xác hoàn toàn thì không chuyển trang
+widthRoute(component) là một dạng HOC. sau khi bao bọc nó bằng widthRouter thì nó 
+sẽ được thừa hưởng một số props. 
+this.props.history.push("/trangMuonChuyenToi"): hàm này để chuyển trang
+. HOC : là một hàm có tham số vào là một component sẽ trả về một component khác
+
+Axios: dùng để thao tác dữ liệu từ api về máy
+axios.get("https://gì đó").then((res) => {})
+đối với điều này thì người ta hay dùng async và await
+async đặt đầu hàm. await đặt đầu câu lệnh mất nhiều thời gian để thực hiện. 
+nó sẽ đợi cho tới khi thực hiện xong thì thôi
+ví dụ:
+async componentDidMount(){
+	let res = await axios.get("https://data")
+}
+có thể dùng `${tham số}` để chuyền dữ liệu vào trong url
