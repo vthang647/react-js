@@ -12,7 +12,6 @@ const Color = (WrComponent) => {
 
   return (props) => (
     <div style={{ color: colorRandom }}>
-      {console.log("hihihihi", props)}
       <WrComponent {...props} />
     </div>
   );
